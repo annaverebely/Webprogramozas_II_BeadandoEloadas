@@ -1,4 +1,4 @@
-<x-mainpage>
+<x-mainpage title="Admin">
   <h1>Admin page</h1>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   Nunc pellentesque posuere nunc, at laoreet augue. Donec

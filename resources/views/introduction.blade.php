@@ -1,4 +1,4 @@
-<x-mainpage>
+<x-mainpage title="Introduction">
   <h1>Introduction page</h1>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   Nunc pellentesque posuere nunc, at laoreet augue. Donec
