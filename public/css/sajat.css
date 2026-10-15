@@ -1,0 +1,152 @@
+/********** Saját stílusok – Édes Cukrászda **********/
+
+/* ---------- Főoldal: hero ---------- */
+.hero {
+    position: relative;
+    min-height: calc(100vh - 90px);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--dark);
+}
+
+/* A háttérkép lassan közelít (ún. Ken Burns-effektus) */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url(../img/hero.jpg) right center / cover no-repeat;
+    animation: hero-zoom 20s ease-in-out infinite alternate;
+}
+
+/* Bal oldalt sötétebb átmenet, hogy a szöveg jól olvasható legyen */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(20, 18, 16, .95) 0%, rgba(20, 18, 16, .75) 45%, rgba(20, 18, 16, .1) 100%);
+}
+
+.hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-tagline {
+    font-family: 'Pacifico', cursive;
+    color: var(--primary);
+    font-size: 2.2rem;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 1;
+    letter-spacing: 2px;
+}
+
+.hero-title span {
+    color: var(--primary);
+}
+
+.hero-lead {
+    max-width: 560px;
+    font-size: 1.15rem;
+    color: #ddd;
+}
+
+/* A hero elemei egymás után úsznak be alulról */
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fade-up .9s ease-out forwards;
+}
+
+.delay-1 { animation-delay: .2s; }
+.delay-2 { animation-delay: .4s; }
+.delay-3 { animation-delay: .6s; }
+.delay-4 { animation-delay: .8s; }
+
+/* Díj-jelvény a hero jobb alsó sarkában */
+.hero-badge {
+    position: absolute;
+    right: 6%;
+    bottom: 12%;
+    z-index: 1;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 0 0 10px rgba(232, 143, 42, .3);
+    animation: badge-float 4s ease-in-out infinite;
+}
+
+.hero-badge .num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+    line-height: 1;
+}
+
+/* Görgetésre hívó nyíl */
+.hero-scroll {
+    position: absolute;
+    left: 50%;
+    bottom: 25px;
+    z-index: 1;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes hero-zoom {
+    from { transform: scale(1); }
+    to   { transform: scale(1.12); }
+}
+
+@keyframes fade-up {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes badge-float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-12px); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50%      { transform: translate(-50%, 10px); }
+}
+
+/* ---------- Főoldal: kártyák ---------- */
+.feature-card {
+    transition: transform .4s, box-shadow .4s;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, .15);
+}
+
+.feature-card img {
+    height: 230px;
+    object-fit: cover;
+}
+
+/* Telefonon kisebb hero és nincs díj-jelvény */
+@media (max-width: 767.98px) {
+    .hero { min-height: 80vh; text-align: center; }
+    .hero::after { background: rgba(20, 18, 16, .75); }
+    .hero-lead { margin-left: auto; margin-right: auto; }
+    .hero-badge { display: none; }
+}
+
+/* Akik kikapcsolták az animációkat, azoknak ne mozogjon semmi */
+@media (prefers-reduced-motion: reduce) {
+    .hero::before, .fade-up, .hero-badge, .hero-scroll { animation: none; opacity: 1; transform: none; }
+}

@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Middleware\Auth2;
 
-Route::get('/', function () {return Inertia::render('welcome');})->name('home');
+// Főoldal: a React Starter Kit helyett saját kezdőoldalunk
+Route::get('/', function () { return view('fooldal'); })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {return Inertia::render('dashboard');})->name('dashboard');

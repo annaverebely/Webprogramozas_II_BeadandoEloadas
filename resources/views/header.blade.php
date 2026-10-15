@@ -39,19 +39,30 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav ms-auto mx-lg-auto py-0">
+      {{-- Mindenki látja (látogató, regisztrált felhasználó, admin) --}}
+      <a href="/" class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Főoldal</a>
+      <a href="/adatbazis" class="nav-item nav-link {{ request()->is('adatbazis*') ? 'active' : '' }}">Adatbázis</a>
+      <a href="/kapcsolat" class="nav-item nav-link {{ request()->is('kapcsolat*') ? 'active' : '' }}">Kapcsolat</a>
+      <a href="/diagram" class="nav-item nav-link {{ request()->is('diagram*') ? 'active' : '' }}">Diagram</a>
+
       @if (Auth::check())
-        <a href="/dashboard" class="nav-item nav-link">Dashboard</a>
-      @endif
-      <a href="/introduction" class="nav-item nav-link {{ request()->is('introduction') ? 'active' : '' }}">Introduction</a>
-      @if (Auth::check())
-        <a href="/user" class="nav-item nav-link {{ request()->is('user') ? 'active' : '' }}">User</a>
+        {{-- Csak bejelentkezett felhasználó látja --}}
+        <a href="/uzenetek" class="nav-item nav-link {{ request()->is('uzenetek*') ? 'active' : '' }}">Üzenetek</a>
+
         @if (Auth::User()->role==1)
-          <a href="/admin" class="nav-item nav-link {{ request()->is('admin') ? 'active' : '' }}">Admin</a>
+          {{-- Csak az admin látja --}}
+          <a href="/crud" class="nav-item nav-link {{ request()->is('crud*') ? 'active' : '' }}">CRUD</a>
         @endif
+
         <form method="post" action="/logout" class="d-flex align-items-center">
           @csrf
-          <button type="submit" class="nav-item nav-link btn btn-link border-0">Logout</button>
+          <button type="submit" class="nav-item nav-link btn btn-link border-0"
+                  title="Bejelentkezve: {{ Auth::User()->name }}">Kijelentkezés</button>
         </form>
+      @else
+        {{-- Csak a nem bejelentkezett látogató látja --}}
+        <a href="/login" class="nav-item nav-link">Bejelentkezés</a>
+        <a href="/register" class="nav-item nav-link">Regisztráció</a>
       @endif
     </div>
   </div>

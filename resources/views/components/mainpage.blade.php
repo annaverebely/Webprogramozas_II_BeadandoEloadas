@@ -1,4 +1,4 @@
-@props(['title' => null])
+@props(['title' => null, 'fluid' => false])
 <!doctype html>
 <html lang="hu">
   <head>
@@ -7,7 +7,7 @@
     <title>{{ $title ? $title.' – ' : '' }}{{ config('app.name') }}</title>
     <link rel="icon" href="{{ asset('favicon.ico') }}">
 
-    <!-- Google Web Fonts (CakeZone téma) -->
+    <!-- választott ingyenes reszponzív téma -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&family=Pacifico&display=swap" rel="stylesheet">
@@ -20,6 +20,8 @@
     <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <!-- Saját stílusok (a téma után, hogy felülírhassák) -->
+    <link href="{{ asset('css/sajat.css') }}" rel="stylesheet">
   </head>
   <body>
     @include('header')
@@ -38,9 +40,13 @@
       </div>
     @endif
 
-    <div class="container py-4">
+    @if ($fluid)
       {{ $slot }}
-    </div>
+    @else
+      <div class="container py-4">
+        {{ $slot }}
+      </div>
+    @endif
 
     @include('footer')
 
