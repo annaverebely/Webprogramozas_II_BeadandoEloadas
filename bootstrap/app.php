@@ -18,7 +18,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->encryptCookies(except: ['appearance', 'sidebar_state']);
 
         // admin
-        
+        $middleware->alias(['admin' => AdminMiddleware::class]);
+
         $middleware->web(append: [
             HandleAppearance::class,
             HandleInertiaRequests::class,
