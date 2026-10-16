@@ -19,3 +19,5 @@ require __DIR__.'/auth.php';
 Route::get('exercise1', function () { return view('view1'); });
 Route::get('introduction', function () { return view('introduction'); });
 
+Route::get('adatbazis', 'App\Http\Controllers\AdatbazisController@index');
+
