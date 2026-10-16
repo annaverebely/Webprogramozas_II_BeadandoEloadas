@@ -1,3 +1,4 @@
+import { AppFooter } from '@/components/app-footer';
 import AppLogoIcon from '@/components/app-logo-icon';
 import { home } from '@/routes';
 import { Link } from '@inertiajs/react';
@@ -30,6 +31,7 @@ export default function AuthSimpleLayout({ children, title, description }: Props
                     {children}
                 </div>
             </div>
+            <AppFooter />
         </div>
     );
 }
