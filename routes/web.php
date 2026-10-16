@@ -18,7 +18,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('crud', SutiCrudController::class)
         ->parameters(['crud' => 'suti'])
-        ->only(['index']);
+        ->except(['show']);
 });
 
 require __DIR__.'/settings.php';
