@@ -21,3 +21,5 @@ Route::get('introduction', function () { return view('introduction'); });
 
 Route::get('adatbazis', 'App\Http\Controllers\AdatbazisController@index');
 
+Route::get('kapcsolat', 'App\Http\Controllers\KapcsolatController@index');
+Route::post('kapcsolat', 'App\Http\Controllers\KapcsolatController@store');
