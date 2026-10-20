@@ -28,6 +28,13 @@ Route::get('react', function () { return view('react'); })->name('react');
 Route::prefix('api')->group(function () {
     Route::get('arak', [ArApiController::class, 'index']);
     Route::get('sutik', [ArApiController::class, 'sutik']);
+
+    
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::post('arak', [ArApiController::class, 'store']);
+        Route::put('arak/{ar}', [ArApiController::class, 'update']);
+        Route::delete('arak/{ar}', [ArApiController::class, 'destroy']);
+    });
 });
 
 require __DIR__.'/settings.php';

@@ -6,5 +6,6 @@ import ArakApp from './ArakApp';
 const gyoker = document.getElementById('react-arak');
 
 if (gyoker) {
-    createRoot(gyoker).render(<ArakApp />);
+    // a Blade-oldal data-admin="1" attribútuma: admin van-e bejelentkezve
+    createRoot(gyoker).render(<ArakApp admin={gyoker.dataset.admin === '1'} />);
 }
