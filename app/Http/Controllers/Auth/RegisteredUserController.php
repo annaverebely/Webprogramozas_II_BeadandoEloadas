@@ -12,15 +12,16 @@ use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
+use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
     /**
      * Show the registration page.
      */
-    public function create(): Response
+    public function create(): View
     {
-        return Inertia::render('auth/register');
+               return view('auth.register');
     }
 
     /**
@@ -46,7 +47,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        // Regisztráció után a saját (Blade) Főoldalra lépünk – lásd AuthenticatedSessionController
-        return Inertia::location(redirect()->intended(route('home', absolute: false))->getTargetUrl());
+                return Inertia::location(redirect()->intended(route('home', absolute: false))->getTargetUrl());
     }
 }
