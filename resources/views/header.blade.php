@@ -1,4 +1,4 @@
-<!-- Felső sáv (csak nagy képernyőn) -->
+
 <div class="container-fluid px-0 d-none d-lg-block">
   <div class="row gx-0">
     <div class="col-lg-4 text-center bg-secondary py-3">
@@ -22,7 +22,7 @@
         <i class="bi bi-phone-vibrate fs-1 text-primary me-3"></i>
         <div class="text-start">
           <h6 class="text-uppercase mb-1">Hívjon minket</h6>
-          <span>+36 76 123 4567</span>
+          <span>+36 76 123 456</span>
         </div>
       </div>
     </div>
@@ -39,18 +39,20 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav ms-auto mx-lg-auto py-0">
-      {{-- Mindenki látja (látogató, regisztrált felhasználó, admin) --}}
+      {{-- Mindenki látja --}}
       <a href="/" class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Főoldal</a>
       <a href="/adatbazis" class="nav-item nav-link {{ request()->is('adatbazis*') ? 'active' : '' }}">Adatbázis</a>
       <a href="/kapcsolat" class="nav-item nav-link {{ request()->is('kapcsolat*') ? 'active' : '' }}">Kapcsolat</a>
       <a href="/diagram" class="nav-item nav-link {{ request()->is('diagram*') ? 'active' : '' }}">Diagram</a>
+      {{-- Kiegészítő feladat: React menü (a listát mindenki látja, módosítani csak az admin tud) --}}
+      <a href="/react" class="nav-item nav-link {{ request()->is('react') ? 'active' : '' }}">React</a>
 
       @if (Auth::check())
-        {{-- Csak bejelentkezett felhasználó látja --}}
+        {{-- Csak bejelentkezett felh látja --}}
         <a href="/uzenetek" class="nav-item nav-link {{ request()->is('uzenetek*') ? 'active' : '' }}">Üzenetek</a>
 
         @if (Auth::User()->role==1)
-          {{-- Csak az admin látja --}}
+          {{-- Csak admin látja --}}
           <a href="/crud" class="nav-item nav-link {{ request()->is('crud*') ? 'active' : '' }}">CRUD</a>
         @endif
 
@@ -60,7 +62,7 @@
                   title="Bejelentkezve: {{ Auth::User()->name }}">Kijelentkezés</button>
         </form>
       @else
-        {{-- Csak a nem bejelentkezett látogató látja --}}
+        {{-- Csak látogató látja --}}
         <a href="/login" class="nav-item nav-link">Bejelentkezés</a>
         <a href="/register" class="nav-item nav-link">Regisztráció</a>
       @endif

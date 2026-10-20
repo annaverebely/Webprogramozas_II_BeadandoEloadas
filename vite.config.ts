@@ -7,7 +7,8 @@ import { defineConfig } from 'vite';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.tsx'],
+            //  React menü belépési pont
+            input: ['resources/css/app.css', 'resources/js/app.tsx', 'resources/js/react-arak/main.tsx'],
             ssr: 'resources/js/ssr.tsx',
             refresh: true,
         }),
