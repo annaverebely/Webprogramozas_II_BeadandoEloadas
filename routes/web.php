@@ -25,3 +25,5 @@ Route::get('kapcsolat', 'App\Http\Controllers\KapcsolatController@index');
 Route::post('kapcsolat', 'App\Http\Controllers\KapcsolatController@store');
 
 Route::get('uzenetek', 'App\Http\Controllers\UzenetekController@index')->middleware('auth');
+
+Route::get('diagram', 'App\Http\Controllers\DiagramController@index');
