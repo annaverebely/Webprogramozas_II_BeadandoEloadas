@@ -56,7 +56,8 @@ export default function ArakApp({ admin }: { admin: boolean }) {
         const kuldott = { suti_id: Number(adat.suti_id) || null, ertek: Number(adat.ertek) || null, egyseg: adat.egyseg };
         try {
             if (szerkesztett) {
-                const { data } = await api.put<Ar>(`/arak/${szerkesztett.id}`, kuldott);
+                // a tárhely (nethely) tiltja a PUT kérést, ezért POST + _method
+                const { data } = await api.post<Ar>(`/arak/${szerkesztett.id}`, { ...kuldott, _method: 'PUT' });
                
                 setArak((lista) => lista.map((ar) => (ar.id === data.id ? data : ar)));
                 setUzenet(`A(z) „${data.suti_nev}” ára módosult.`);
@@ -79,7 +80,8 @@ export default function ArakApp({ admin }: { admin: boolean }) {
     const torles = async (ar: Ar) => {
         if (!confirm(`Biztosan törli ezt az árat: ${ar.suti_nev}, ${ar.ertek.toLocaleString('hu-HU')} Ft / ${ar.egyseg}?`)) return;
         try {
-            await api.delete(`/arak/${ar.id}`);
+            // a tárhely tiltja a DELETE kérést, ezért POST
+            await api.post(`/arak/${ar.id}`, { _method: 'DELETE' });
             setArak((lista) => lista.filter((x) => x.id !== ar.id));
             setUzenet(`Az ár törölve: ${ar.suti_nev}, ${ar.egyseg}.`);
         } catch {
