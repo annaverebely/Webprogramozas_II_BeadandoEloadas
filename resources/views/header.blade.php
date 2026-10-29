@@ -46,6 +46,8 @@
       <a href="/diagram" class="nav-item nav-link {{ request()->is('diagram*') ? 'active' : '' }}">Diagram</a>
       {{-- Kiegészítő feladat: React menü (a listát mindenki látja, módosítani csak az admin tud) --}}
       <a href="/react" class="nav-item nav-link {{ request()->is('react') ? 'active' : '' }}">React</a>
+      {{-- Kiegészítő feladat: Teszt menü --}}
+      <a href="/teszt" class="nav-item nav-link {{ request()->is('teszt') ? 'active' : '' }}">Teszt</a>
 
       @if (Auth::check())
         {{-- Csak bejelentkezett felh látja --}}
